@@ -1,0 +1,277 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="QLBH_RMM.Main" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Rau Má Mix - Đặt Hàng Online</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh; /* Đảm bảo trang có chiều cao tối thiểu là 100% chiều cao của trình duyệt */
+            display: flex;
+            flex-direction: column; /* Đảm bảo nội dung chính kéo dài theo chiều dọc */
+            margin: 0; /* Bỏ margin mặc định của body */
+        }
+        form#form1 {
+            flex: 1; /* Đẩy footer xuống dưới */
+        }
+
+        .header {
+            background-color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed; /* Cố định header */
+            top: 0; /* Đặt header ở trên cùng */
+            left: 0; /* Đặt header ở bên trái */
+            right: 0; /* Đặt header ở bên phải */
+            z-index: 1000; /* Đảm bảo header nằm trên các phần tử khác */
+        }
+
+        .logo {
+            margin-left: 30px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin: 0 20px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #0A6847;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-box button {
+            margin-left: 10px;
+            background-color: #F6E9B2;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-container {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 15px;
+        }
+
+        .cart-item img {
+            height: 30px;
+            width: 30px;
+        }
+
+        .cart-item span {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #0A6847;
+        }
+
+        .footer {
+            background-color: #008840;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            width: 97%;
+            position: relative; 
+            clear: both; 
+            margin-top: 20px;
+        }
+
+        .footer-widgets {
+            background-color: #008840;
+            color: white;
+            padding: 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1;
+            padding: 0 22px;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .footer-column p {
+            margin: 0 0 10px;
+            color: white;
+        }
+
+        .footer-column a {
+            color: #fff000;
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+            }
+            .footer-column {
+                margin-bottom: 20px;
+            }
+        }
+
+        .btn-list {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
+        .btn-float-container {
+            margin-bottom: 10px;
+        }
+
+        .btn-float {
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #0A6847;
+            color: white;
+            text-align: center;           
+            font-size: 12px;
+            line-height: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        .btn-float:hover {
+            background-color: #008840;
+        }
+
+        .menu-click-to-call {
+            background-image: url('path-to-your-call-icon.png');
+        }
+
+        .menu-facebook {
+            background-image: url('path-to-your-facebook-icon.png');
+        }
+
+        .menu-zalo {
+            background-image: url('path-to-your-zalo-icon.png');
+        }
+
+        .menu-google-map {
+            background-image: url('path-to-your-google-map-icon.png');
+        }
+
+        /* Để tránh nội dung bị chồng lên header */
+        .content {
+            padding-top: 70px; /* Giữ khoảng cách cho nội dung dưới header */
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="logo">
+                <a href="~/TrangChu.aspx">
+                    <asp:ImageButton ID="ImageButton" runat="server" Height="58px" ImageUrl="~/Images/logo_nobr.png" Width="300px" CssClass="no-border" />
+                </a>
+            </div>
+            <!-- Navigation Menu -->
+            <ul class="nav-menu">
+                <li><a href="/TrangChu.aspx">Trang chủ</a></li>
+                <li><a href="/SanPham.aspx">Menu</a></li>
+                <li><a href="/HeThongCuaHang.aspx">Hệ thống cửa hàng</a></li>
+                <li><a href="/LienHe.aspx">Liên hệ</a></li>
+            </ul>
+            <div class="search-box">
+                <asp:TextBox ID="txtSearch" runat="server" placeholder="Tìm kiếm sản phẩm..." />
+                <asp:Button ID="btnSearch" runat="server" Text="Tìm kiếm" OnClick="btnSearch_Click" />
+            </div>
+
+            <div class="cart-container">
+                <div class="cart-item">
+                    <asp:ImageButton ID="imggiohang" runat="server" ImageUrl="~/Images/shopping-bag.png" PostBackUrl="~/GioHang.aspx" CssClass="cart-icon" />
+                    <span>Giỏ hàng</span>
+                </div>
+                <div class="cart-item">
+                    <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/Images/user.png" CssClass="cart-icon" OnClick="btntaikhoan_Click" />
+                    <span>Tài khoản</span>
+                </div>
+            </div>
+        </div>
+
+        <asp:Panel ID="Panel1" runat="server">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+            </asp:ContentPlaceHolder>
+        </asp:Panel>
+
+        <!-- Footer Section -->
+        <div class="footer-widgets footer">
+            <div class="footer-container">
+                <!-- Column 1: About Us -->
+                <div class="footer-column">
+                    <h3>Về chúng tôi</h3>
+                    <p>Rau Má Mix - Càng Mix Càng Ngon</p>
+                    <p>Ra đời từ năm 2019, là thương hiệu nước uống rau má tiên phong trong việc sử dụng Rau má tươi nguyên chất 100% kết hợp cùng các nguyên liệu từ nguồn nông sản Việt, để tạo ra những dòng nước uống thơm ngon với hương vị đặc trưng, ngập tràn sự thú vị, tốt cho sức khoẻ và sắc đẹp.</p>
+                    <p>Hệ thống có hơn 60 cửa hàng tại Tp.HCM & Bình Dương.</p>
+                </div>
+                <!-- Column 2: Information -->
+                <div class="footer-column">
+                    <h3>Thông tin</h3>
+                    <p><strong>Trụ sở chính:</strong> 65 đường số 37, Khu đô thị Vạn Phúc, Hiệp Bình Phước, TP.HCM</p>
+                </div>
+                <!-- Column 3: Support -->
+                <div class="footer-column">
+                    <h3>Hỗ trợ</h3>
+                    <p><strong>Hỗ trợ khách hàng:</strong> <a href="tel:1900633934">1900 09 07  02</a></p>
+                    <p><strong>Gửi email:</strong> <a href="mailto:contact@rauma.vn">2121011855@sv.ufm.edu.vn</a></p>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>

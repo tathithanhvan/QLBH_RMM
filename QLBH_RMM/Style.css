@@ -1,0 +1,73 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f5fff3;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px; /* Tăng chiều rộng của container để chứa được nội dung */
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 0;
+    padding: 50px;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #0A6847;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+    .form-group label {
+        flex: 0 0 175px; /* Đặt chiều rộng cố định cho label */
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-group input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+.btn {
+    background-color: #0A6847;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+    .btn:hover {
+        background-color: #00796b;
+    }
+
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+
+/* Centering form content */
+.wizard-container {
+    display: flex;
+    justify-content: center; /* Căn giữa ngang */
+    align-items: center; /* Căn giữa dọc */
+    height: 100%;
+    padding: 20px;
+}

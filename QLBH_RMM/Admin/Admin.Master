@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="QLBH_RMM.Admin.Admin" %>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Rau Má Mix</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            background-color: #f4f4f4; /* Thêm màu nền để trang không bị trắng */
+        }
+
+        form#form1 {
+            flex: 1;
+        }
+
+        .header {
+            background-color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ cho header */
+        }
+
+        .logo {
+            margin-left: 30px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin-right: 30px; /* Thêm khoảng cách bên phải cho menu */
+        }
+
+        .nav-menu li {
+            margin: 0 20px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #0A6847;
+            font-weight: bold;
+            font-size: 22px;
+            transition: color 0.3s; /* Thêm hiệu ứng chuyển màu khi di chuột */
+        }
+
+        .nav-menu a:hover {
+            color: #007B5F; /* Thay đổi màu khi di chuột qua menu */
+        }
+
+        .content {
+            padding-top: 70px; /* Duy trì không gian cho header */
+            padding: 20px; /* Thêm khoảng cách bên trong cho nội dung */
+            background-color: #fff; /* Thêm màu nền cho nội dung */
+            border-radius: 5px; /* Bo tròn góc cho nội dung */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Thêm bóng đổ cho nội dung */
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="logo">
+                <a href="~/Admin/Home.aspx">
+                    <asp:ImageButton ID="ImageButton" runat="server" Height="58px" ImageUrl="~/Images/logo_nobr.png" Width="300px" CssClass="no-border" />
+                </a>
+            </div>
+            <!-- Navigation Menu -->
+            <ul class="nav-menu">
+                <li><a href="/Admin/Home.aspx">Trang Chủ</a></li>
+                <li><a href="/Admin/ManageOrders.aspx">Đơn hàng</a></li>
+                <li><a href="/Admin/ManageProducts.aspx">Sản phẩm</a></li>
+                <li><a href="/Admin/ManagePromotions.aspx">Khuyến mãi</a></li>
+                <li><a href="/Admin/ManageUsers.aspx">Tài khoản</a></li>
+                <li><a href="/Admin/Reports.aspx">Báo cáo</a></li>
+                <li><a href="/Customer/DangXuat.aspx">Đăng xuất</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <!-- Page-specific content will be rendered here -->
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

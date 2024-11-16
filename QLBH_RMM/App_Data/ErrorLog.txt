@@ -1,0 +1,14 @@
+10/23/2024 1:28:21 PM: Lỗi: The INSERT statement conflicted with the CHECK constraint "CK_HoaDon_TinhTrang". The conflict occurred in database "QuanLyBanHang", table "dbo.HoaDon", column 'TinhTrang'. 
+Tham số:
+MaKH: 48
+TenNN: Tạ Thị Thanh Vân
+SDTNN: 0856036377
+DiaChiNN: c
+HinhThucThanhToan: COD
+10/23/2024 1:28:21 PM: Lỗi: The parameterized query '(@orderId nvarchar(4000),@productId nvarchar(10),@quantity int,@' expects the parameter '@orderId', which was not supplied. 
+Tham số:
+MaKH: 
+TenNN: CB005     
+SDTNN: 5
+DiaChiNN: 
+HinhThucThanhToan: 
